@@ -26,6 +26,21 @@ var adjacencyRules = map[int][]int{
 	River:    {Forrest, Grass, Water, River},
 }
 
+func InitGrid(width, height int) [][]Tile {
+	grid := make([][]Tile, height)
+	for i := range grid {
+		grid[i] = make([]Tile, width)
+	}
+
+	for y := 0; y < height; y++ {
+		for x := 0; x < width; x++ {
+			grid[x][y] = CollapseTile(x, y, grid)
+		}
+	}
+
+	return grid
+}
+
 func CollapseTile(x, y int, grid [][]Tile) Tile {
 	possibleTiles := tiles
 	if x > 0 {

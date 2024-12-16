@@ -7,21 +7,12 @@ import (
 )
 
 const (
-	width  = 100
-	height = 100
+	width  = 25
+	height = 25
 )
 
 func main() {
-	grid := make([][]tile.Tile, height)
-	for i := range grid {
-		grid[i] = make([]tile.Tile, width)
-	}
-
-	for y := 0; y < height; y++ {
-		for x := 0; x < width; x++ {
-			grid[x][y] = tile.CollapseTile(x, y, grid)
-		}
-	}
+	grid := tile.InitGrid(width, height)
 
 	image, err := render.Render(grid)
 	if err != nil {
